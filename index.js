@@ -42,83 +42,88 @@ if (tieneDeuda(cedula)) {
   let financiacion = parseFloat(
     prompt("Ingrese su monto deseado para el préstamo")
   );
-  let numeroCuotas = parseInt(prompt("Ingrese número de cuotas"));
-  function pagoFinal(finaciacion, recargo) {
-    pagoAlFinal = financiacion * recargo;
-    return pagoAlFinal;
-  }
-  function precioCuotas(pagoFinal, numeroCuotas) {
-    precioPorCuotas = pagoFinal / numeroCuotas;
-    return precioPorCuotas;
-  }
-  while (numeroCuotas > 24) {
-    alert("El número máximo de cuotas es 24");
-    numeroCuotas = parseInt(prompt("Ingrese número de cuotas"));
-  }
-
-  if (numeroCuotas === 1) {
+  if (financiacion > 100000) {
     alert(
-      "Hola " +
-        nombreCliente +
-        "! Su préstamo es de: $" +
-        financiacion +
-        " y usted lo pagará en 1 cuota de $" +
-        financiacion
+      "Nuestro préstamo máximo online es de $100.000. Prueba en alguna de nuestras sucursales!"
     );
-  } else if (numeroCuotas <= 3) {
-    const hastaTres = pagoFinal(financiacion, 1.08);
-    const precioDeTres = precioCuotas(hastaTres, numeroCuotas);
-    alert(
-      "Hola " +
-        nombreCliente +
-        "! Su préstamo es de: $" +
-        financiacion +
-        " y usted lo pagará en " +
-        numeroCuotas +
-        " cuotas de $" +
-        precioDeTres
-    );
-  } else if (numeroCuotas <= 6) {
-    const hastaSeis = pagoFinal(financiacion, 1.12);
-    const precioHastaSeis = precioCuotas(hastaSeis, numeroCuotas);
-    alert(
-      "Hola " +
-        nombreCliente +
-        "! Su préstamo es de: $" +
-        financiacion +
-        " y usted lo pagará en " +
-        numeroCuotas +
-        " cuotas de " +
-        precioHastaSeis
-    );
-  } else if (numeroCuotas <= 12) {
-    const hastaDoce = pagoFinal(financiacion, 1.18);
-    const precioHastaDoce = precioCuotas(hastaDoce, numeroCuotas);
-    alert(
-      "Hola " +
-        nombreCliente +
-        "! Su préstamo es de: $" +
-        financiacion +
-        " y usted lo pagará en " +
-        numeroCuotas +
-        " cuotas de " +
-        precioHastaDoce
-    );
-  } else if (numeroCuotas <= 24) {
-    const hastaVeinticuatro = pagoFinal(financiacion, 1.22);
-    const precioHastaVeinticuatro = precioCuotas(
-      hastaVeinticuatro,
-      numeroCuotas
-    );
-    alert(
-      "Hola " +
-        nombreCliente +
-        "! Su préstamo es de: $" +
-        financiacion +
-        " y usted lo pagará en " +
-        numeroCuotas +
-        " cuotas de " +
-        precioHastaVeinticuatro
-    );
+  } else {
+    let numeroCuotas = parseInt(prompt("Ingrese número de cuotas"));
+    function pagoFinal(finaciacion, recargo) {
+      pagoAlFinal = financiacion * recargo;
+      return pagoAlFinal;
+    }
+    function precioCuotas(pagoFinal, numeroCuotas) {
+      precioPorCuotas = pagoFinal / numeroCuotas;
+      return precioPorCuotas;
+    }
+    while (numeroCuotas > 24) {
+      alert("El número máximo de cuotas es 24");
+      numeroCuotas = parseInt(prompt("Ingrese número de cuotas"));
+    }
+    if (numeroCuotas === 1) {
+      alert(
+        "Hola " +
+          nombreCliente +
+          "! Su préstamo es de: $" +
+          financiacion +
+          " y usted lo pagará en 1 cuota de $" +
+          financiacion
+      );
+    } else if (numeroCuotas <= 3) {
+      const hastaTres = pagoFinal(financiacion, 1.08);
+      const precioDeTres = precioCuotas(hastaTres, numeroCuotas);
+      alert(
+        "Hola " +
+          nombreCliente +
+          "! Su préstamo es de: $" +
+          financiacion +
+          " y usted lo pagará en " +
+          numeroCuotas +
+          " cuotas de $" +
+          precioDeTres
+      );
+    } else if (numeroCuotas <= 6) {
+      const hastaSeis = pagoFinal(financiacion, 1.12);
+      const precioHastaSeis = precioCuotas(hastaSeis, numeroCuotas);
+      alert(
+        "Hola " +
+          nombreCliente +
+          "! Su préstamo es de: $" +
+          financiacion +
+          " y usted lo pagará en " +
+          numeroCuotas +
+          " cuotas de " +
+          precioHastaSeis
+      );
+    } else if (numeroCuotas <= 12) {
+      const hastaDoce = pagoFinal(financiacion, 1.18);
+      const precioHastaDoce = precioCuotas(hastaDoce, numeroCuotas);
+      alert(
+        "Hola " +
+          nombreCliente +
+          "! Su préstamo es de: $" +
+          financiacion +
+          " y usted lo pagará en " +
+          numeroCuotas +
+          " cuotas de " +
+          precioHastaDoce
+      );
+    } else if (numeroCuotas <= 24) {
+      const hastaVeinticuatro = pagoFinal(financiacion, 1.22);
+      const precioHastaVeinticuatro = precioCuotas(
+        hastaVeinticuatro,
+        numeroCuotas
+      );
+      alert(
+        "Hola " +
+          nombreCliente +
+          "! Su préstamo es de: $" +
+          financiacion +
+          " y usted lo pagará en " +
+          numeroCuotas +
+          " cuotas de " +
+          precioHastaVeinticuatro
+      );
+    }
   }
 }
