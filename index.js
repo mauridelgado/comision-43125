@@ -2,6 +2,7 @@ let clientes = [];
 
 let nombreCliente = prompt("Ingrese su nombre");
 let cedula = prompt("Ingrese su cédula");
+
 function yaEsCliente(cedula) {
   for (let i = 0; i < clientes.length; i++) {
     if (clientes[i].cedula === cedula) {
@@ -12,7 +13,7 @@ function yaEsCliente(cedula) {
 }
 
 let nuevoCliente = {};
-if (yaEsCliente(cedulaCliente)) {
+if (yaEsCliente(cedula)) {
   alert("El cliente ya está registrado");
 } else {
   nuevoCliente = {
@@ -23,11 +24,10 @@ if (yaEsCliente(cedulaCliente)) {
   };
 }
 clientes.push(nuevoCliente);
-
-let cedulaCliente = prompt("Ingrese su cédula");
+console.log(clientes);
 
 function tieneDeuda(cedula) {
-  for (let i = 0; clientes.lengt; i++) {
+  for (let i = 0; clientes.length; i++) {
     if (clientes[i].cedula === cedula && clientes[i].dineroDebido >= 30000) {
       return true;
     } else {
@@ -58,7 +58,9 @@ if (tieneDeuda(cedula)) {
 
   if (numeroCuotas === 1) {
     alert(
-      "Su préstamo es de: $ " +
+      "Hola " +
+        nombreCliente +
+        "! Su préstamo es de: $" +
         financiacion +
         " y usted lo pagará en 1 cuota de $" +
         financiacion
@@ -67,7 +69,9 @@ if (tieneDeuda(cedula)) {
     const hastaTres = pagoFinal(financiacion, 1.08);
     const precioDeTres = precioCuotas(hastaTres, numeroCuotas);
     alert(
-      "Su préstamo es de: $ " +
+      "Hola " +
+        nombreCliente +
+        "! Su préstamo es de: $" +
         financiacion +
         " y usted lo pagará en " +
         numeroCuotas +
@@ -78,7 +82,9 @@ if (tieneDeuda(cedula)) {
     const hastaSeis = pagoFinal(financiacion, 1.12);
     const precioHastaSeis = precioCuotas(hastaSeis, numeroCuotas);
     alert(
-      "Su préstamo es de: $ " +
+      "Hola " +
+        nombreCliente +
+        "! Su préstamo es de: $" +
         financiacion +
         " y usted lo pagará en " +
         numeroCuotas +
@@ -89,7 +95,9 @@ if (tieneDeuda(cedula)) {
     const hastaDoce = pagoFinal(financiacion, 1.18);
     const precioHastaDoce = precioCuotas(hastaDoce, numeroCuotas);
     alert(
-      "Su préstamo es de: $ " +
+      "Hola " +
+        nombreCliente +
+        "! Su préstamo es de: $" +
         financiacion +
         " y usted lo pagará en " +
         numeroCuotas +
@@ -103,7 +111,9 @@ if (tieneDeuda(cedula)) {
       numeroCuotas
     );
     alert(
-      "Su préstamo es de: $ " +
+      "Hola " +
+        nombreCliente +
+        "! Su préstamo es de: $" +
         financiacion +
         " y usted lo pagará en " +
         numeroCuotas +
