@@ -82,7 +82,7 @@ function nuevoPrestamo(clienteExiste) {
         const conIntereses = calcularIntereses(newPrestamo, newPlazo);
         clienteExiste.prestamo = conIntereses;
         clienteExiste.plazo = newPlazo;
-        const totalCuotas = conIntereses / newPlazo;
+        const totalCuotas = Math.ceil(conIntereses / newPlazo);
         alert(
           `El préstamo es de $${newPrestamo}. Usted lo pagará en ${newPlazo} cuotas de $${totalCuotas}. Nos comunicaremos a la brevedad con usted.`
         );
