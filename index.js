@@ -45,9 +45,15 @@ function menu(clienteExiste) {
   }
 }
 function verPrestamo(clienteExiste) {
-  alert(
-    ` Bienvenido, ${clienteExiste.nombre}, usted tiene en curso un préstamo de ${clienteExiste.prestamo} a pagar en ${clienteExiste.plazo} cuotas`
-  );
+  if (clienteExiste.prestamo > 0) {
+    alert(
+      ` Bienvenido, ${clienteExiste.nombre}, usted tiene en curso un préstamo de ${clienteExiste.prestamo} a pagar en ${clienteExiste.plazo} cuotas`
+    );
+    menu(clienteExiste);
+  } else {
+    alert("Usted no tiene préstamos en curso");
+    menu(clienteExiste);
+  }
 }
 
 function nuevoPrestamo(clienteExiste) {
@@ -55,6 +61,7 @@ function nuevoPrestamo(clienteExiste) {
     alert(
       "Usted tiene un préstamo mayor a $10.000 en curso. Para un nuevo préstamo, dirígase a nuestra sucursal más cercana."
     );
+    menu(clienteExiste);
   } else {
     const newPrestamo = parseInt(
       prompt("Ingrese el monto de su nuevo préstamo")
@@ -70,24 +77,48 @@ function nuevoPrestamo(clienteExiste) {
         alert(
           "El plazo máximo para préstamos en la app es 24 meses. Solicite un plazo menor o dirígase a la sucursal más cercana."
         );
+        menu(clienteExiste);
       } else {
-        clienteExiste.prestamo = newPrestamo;
+        const conIntereses = calcularIntereses(newPrestamo, newPlazo);
+        clienteExiste.prestamo = conIntereses;
         clienteExiste.plazo = newPlazo;
+        const totalCuotas = conIntereses / newPlazo;
         alert(
-          "El préstamo está siendo procesado. Nos comunicaremos a la brevedad."
+          `El préstamo es de ${newPrestamo}. Usted lo pagará en ${newPlazo} cuotas de ${totalCuotas}. Nos comunicaremos a la brevedad con usted.`
         );
       }
     }
   }
 }
-
+function calcularIntereses(monto, plazo) {
+  if (plazo < 3) {
+    aPagar = monto;
+    return aPagar;
+  } else if (plazo < 6) {
+    aPagar = monto * 1.08;
+    return aPagar;
+  } else if (plazo < 12) {
+    aPagar = monto * 1.12;
+  } else {
+    aPagar = monto * 1.17;
+  }
+}
 function newCliente() {
   const clienteNombre = prompt("Ingrese su nombre");
   const clienteCedula = prompt("Ingrese cédula");
-  const nuevoCliente = {
-    nombre: clienteNombre,
-    cedula: parseInt(clienteCedula),
-  };
-  clientes.push(nuevoCliente);
-  menu(nuevoCliente);
+  const cedulaExistente = clientes.find(
+    (c) => c.cedula === parseInt(clienteCedula)
+  );
+
+  if (cedulaExistente) {
+    alert("Usted ya está registrado");
+    init();
+  } else {
+    const nuevoCliente = {
+      nombre: clienteNombre,
+      cedula: parseInt(clienteCedula),
+    };
+    clientes.push(nuevoCliente);
+    menu(nuevoCliente);
+  }
 }

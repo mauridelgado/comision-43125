@@ -7,10 +7,24 @@ body {
   background-image: url(../assets/img/fondo.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .logo-banco {
   width: 40px;
 }
 .construccion {
-  background-color: aliceblue;
+  background-color: beige;
+  text-align: center;
+  margin: 3rem;
+  padding: 2rem;
+  border-radius: 20%;
+}
+.enProceso {
+  font-size: 2rem;
+}
+.construyendo {
+  width: 3rem;
 }
