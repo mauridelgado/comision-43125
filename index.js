@@ -21,11 +21,10 @@ function init() {
 init();
 
 function login() {
-  const cliente = prompt("Ingrese su nombre");
   const cedula = prompt("Ingrese su cédula sin puntos ni guiones");
   const clienteExiste = clientes.find((c) => c.cedula === parseInt(cedula));
   if (clienteExiste) {
-    menu();
+    menu(clienteExiste);
   } else {
     alert("Usted no es cliente");
     init();
@@ -47,17 +46,39 @@ function menu(clienteExiste) {
 }
 function verPrestamo(clienteExiste) {
   alert(
-    ` Bienvendio, ${clienteExiste.nombre}, usted tiene en curso un préstamo de ${clienteExiste.prestamo} a pagar en ${clienteExiste.plazo} cuotas`
+    ` Bienvenido, ${clienteExiste.nombre}, usted tiene en curso un préstamo de ${clienteExiste.prestamo} a pagar en ${clienteExiste.plazo} cuotas`
   );
 }
 
 function nuevoPrestamo(clienteExiste) {
-  const newPrestamo = parseInt(prompt("Ingrese el monto de su nuevo préstamo"));
-  const newPlazo = parseInt(prompt("Ingrese el plazo en meses"));
-  clienteExiste.prestamo = newPrestamo;
-  clienteExiste.plazo = newPlazo;
-  alert("El préstamo está siendo procesado. Nos comunicaremos a la brevedad.");
-  init();
+  if (clienteExiste.prestamo > 10000) {
+    alert(
+      "Usted tiene un préstamo mayor a $10.000 en curso. Para un nuevo préstamo, dirígase a nuestra sucursal más cercana."
+    );
+  } else {
+    const newPrestamo = parseInt(
+      prompt("Ingrese el monto de su nuevo préstamo")
+    );
+    if (newPrestamo > 100000) {
+      alert(
+        "Los préstamos en la app no pueden superar los $100.000. Solicite un préstamo menor o dirígase a la sucursal más cercana."
+      );
+      menu(clienteExiste);
+    } else {
+      const newPlazo = parseInt(prompt("Ingrese el plazo en meses"));
+      if (newPlazo > 24) {
+        alert(
+          "El plazo máximo para préstamos en la app es 24 meses. Solicite un plazo menor o dirígase a la sucursal más cercana."
+        );
+      } else {
+        clienteExiste.prestamo = newPrestamo;
+        clienteExiste.plazo = newPlazo;
+        alert(
+          "El préstamo está siendo procesado. Nos comunicaremos a la brevedad."
+        );
+      }
+    }
+  }
 }
 
 function newCliente() {
