@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url(../assets/img/fondo.jpeg);
+  background-image: url(../assets/img/fondo.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 .logo-banco {
   width: 40px;
+}
+.construccion {
+  background-color: aliceblue;
 }
