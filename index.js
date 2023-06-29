@@ -7,61 +7,57 @@ const clientes = [
     plazo: 12,
   },
 ];
-function yaEsCliente() {
-  const elCliente = parseInt(prompt("1-Ya soy cliente 2-Nuevo cliente"));
-  if (elCliente === 1) {
+function init() {
+  const seleccion = parseInt(prompt("1-Ya soy cliente 2-Nuevo cliente"));
+  if (seleccion === 1) {
     login();
-  } else if (elCliente === 2) {
+  } else if (seleccion === 2) {
     newCliente();
   } else {
     alert("Opción inválida");
-    yaEsCliente();
+    init();
   }
 }
-yaEsCliente();
+init();
 
 function login() {
   const cliente = prompt("Ingrese su nombre");
   const cedula = prompt("Ingrese su cédula sin puntos ni guiones");
-  const clienteExiste = clientes.find((c) => c.cedula === cedula);
-  if (clienteExiste()) {
+  const clienteExiste = clientes.find((c) => c.cedula === parseInt(cedula));
+  if (clienteExiste) {
     menu();
   } else {
     alert("Usted no es cliente");
-    yaEsCliente();
+    init();
   }
 }
-function menu() {
+function menu(clienteExiste) {
   const seleccion = parseInt(
     prompt("1- Ver préstamos 2-Nuevo préstamo 3-Salir")
   );
   if (seleccion === 1) {
-    verPrestamo();
+    verPrestamo(clienteExiste);
   } else if (seleccion === 2) {
-    nuevoPrestamo();
+    nuevoPrestamo(clienteExiste);
   } else if (seleccion === 3) {
     return;
   } else {
     menu();
   }
 }
-function verPrestamo() {
+function verPrestamo(clienteExiste) {
   alert(
     ` Bienvendio, ${clienteExiste.nombre}, usted tiene en curso un préstamo de ${clienteExiste.prestamo} a pagar en ${clienteExiste.plazo} cuotas`
   );
 }
 
-function nuevoPrestamo() {
-  const clienteNombre = prompt("Ingrese su nombre");
-  const clienteCedula = prompt("Ingrese cédula");
-  const newPrestamo = parseInt(prompt("ingrese el monto de su nuevo préstamo"));
-  const newPlazo = parseInt(prompt("ingrese el plazo en meses"));
-  const clienteExiste = clientes.find((c) => c.cedula === cliente);
-  const estePrestamo = {
-    prestamo: newPrestamo,
-    plazo: newPlazo,
-  };
-  clientes.push(estePrestamo);
+function nuevoPrestamo(clienteExiste) {
+  const newPrestamo = parseInt(prompt("Ingrese el monto de su nuevo préstamo"));
+  const newPlazo = parseInt(prompt("Ingrese el plazo en meses"));
+  clienteExiste.prestamo = newPrestamo;
+  clienteExiste.plazo = newPlazo;
+  alert("El préstamo está siendo procesado. Nos comunicaremos a la brevedad.");
+  init();
 }
 
 function newCliente() {
@@ -69,8 +65,8 @@ function newCliente() {
   const clienteCedula = prompt("Ingrese cédula");
   const nuevoCliente = {
     nombre: clienteNombre,
-    cedula: clienteCedula,
+    cedula: parseInt(clienteCedula),
   };
   clientes.push(nuevoCliente);
-  menu();
+  menu(nuevoCliente);
 }
