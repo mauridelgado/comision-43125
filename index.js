@@ -9,9 +9,9 @@ const clientes = [
 ];
 function yaEsCliente() {
   const actualCliente = parseInt(prompt("1-Ya soy cliente 2-Nuevo cliente"));
-  if (seleccion === 1) {
+  if (yaEsCliente === 1) {
     login();
-  } else if (seleccion === 2) {
+  } else if (yaEsCliente === 2) {
     newCliente();
   } else {
     alert("Opción inválida");
@@ -22,7 +22,7 @@ yaEsCliente();
 
 function login() {
   const cliente = prompt("Ingrese su nombre");
-  const cedula = prompt("Ingrese su cedula");
+  const cedula = prompt("Ingrese su cédula sin puntos ni guiones");
   const clienteExiste = clientes.find((c) => c.cedula === cliente);
   if (clienteExiste()) {
     menu();
