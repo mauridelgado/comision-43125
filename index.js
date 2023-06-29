@@ -84,23 +84,25 @@ function nuevoPrestamo(clienteExiste) {
         clienteExiste.plazo = newPlazo;
         const totalCuotas = conIntereses / newPlazo;
         alert(
-          `El préstamo es de ${newPrestamo}. Usted lo pagará en ${newPlazo} cuotas de ${totalCuotas}. Nos comunicaremos a la brevedad con usted.`
+          `El préstamo es de $${newPrestamo}. Usted lo pagará en ${newPlazo} cuotas de $${totalCuotas}. Nos comunicaremos a la brevedad con usted.`
         );
       }
     }
   }
 }
 function calcularIntereses(monto, plazo) {
-  if (plazo < 3) {
+  if (plazo < 4) {
     aPagar = monto;
     return aPagar;
-  } else if (plazo < 6) {
+  } else if (plazo < 7) {
     aPagar = monto * 1.08;
     return aPagar;
-  } else if (plazo < 12) {
+  } else if (plazo < 13) {
     aPagar = monto * 1.12;
+    return aPagar;
   } else {
     aPagar = monto * 1.17;
+    return aPagar;
   }
 }
 function newCliente() {
