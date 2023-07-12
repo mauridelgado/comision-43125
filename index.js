@@ -8,17 +8,11 @@ const clientes = [
   },
 ];
 function init() {
-  const seleccion = parseInt(prompt("1-Ya soy cliente 2-Nuevo cliente"));
-  if (seleccion === 1) {
-    login();
-  } else if (seleccion === 2) {
-    newCliente();
-  } else {
-    alert("Opción inválida");
-    init();
-  }
+  const botonCliente = document.getElementsById("yaCliente");
+  botonCliente.addEventListener("click", login);
+  const botonNuevoCliente = document.getElementById("clienteNuevo");
+  botonNuevoCliente.addEventListener("click", newCliente);
 }
-init();
 
 function login() {
   const cedula = prompt("Ingrese su cédula sin puntos ni guiones");
